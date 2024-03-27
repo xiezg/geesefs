@@ -997,8 +997,13 @@ func (parent *Inode) removeChildUnlocked(inode *Inode) {
 	}
 	i := sort.Search(l, parent.findInodeFunc(inode.Name))
 	if i >= l || parent.dir.Children[i].Name != inode.Name {
-		panic(fmt.Sprintf("%v.removeName(%v) but child not found: %v",
-			parent.FullName(), inode.Name, i))
+
+		log.Errorln(fmt.Sprintf("%v.removeName(%v) but child not found: %v/%v",
+			parent.FullName(), inode.Name, i, l))
+
+		/*panic(fmt.Sprintf("%v.removeName(%v) but child not found: %v",
+			parent.FullName(), inode.Name, i))*/
+		return
 	}
 
 	// POSIX allows parallel readdir() and modifications,

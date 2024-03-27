@@ -17,7 +17,7 @@ get-deps: s3proxy.jar
 	go get -t ./...
 
 build:
-	go build -ldflags "-X main.Version=`git rev-parse HEAD`"
+	go build -ldflags "-X github.com/yandex-cloud/geesefs/internal/cfg.GEESEFS_VERSION=0.40.5-hs-beta.2"
 
 install:
 	go install -ldflags "-X main.Version=`git rev-parse HEAD`"
