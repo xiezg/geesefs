@@ -1,5 +1,7 @@
 export CGO_ENABLED=0
 
+VERSION="0.40.5-hs-beta.2"
+
 run-test: s3proxy.jar
 	./test/run-tests.sh
 
@@ -17,10 +19,10 @@ get-deps: s3proxy.jar
 	go get -t ./...
 
 build:
-	go build -ldflags "-X github.com/yandex-cloud/geesefs/internal/cfg.GEESEFS_VERSION=0.40.5-hs-beta.2"
+	go build -ldflags "-X github.com/yandex-cloud/geesefs/internal/cfg.GEESEFS_VERSION=${VERSION}"
 
 install:
-	go install -ldflags "-X main.Version=`git rev-parse HEAD`"
+	#go install -ldflags "-X main.Version=`git rev-parse HEAD`"
 
 
 .PHONY: protoc
